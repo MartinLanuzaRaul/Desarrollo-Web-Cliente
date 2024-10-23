@@ -1,0 +1,57 @@
+<html>
+
+    <head> 
+        <meta charset="UTF-8">
+        <title>Ejercicio 3</title>
+
+        <script type="text/javascript">
+            function cambiarColorTitulo(){
+                document.getElementById("titulo").style.backgroundColor="red";
+            }
+
+            function cambiarColorBody(){
+                document.getElementById("body").style.backgroundColor="grey";
+            }
+
+            
+
+            function mostrarURL(imagen, div){
+               let url = imagen.src;
+               var nuevoP = document.createElement("p");
+               nuevoP.textContent = url;
+               var divImg = document.getElementById(div);
+               divImg.appendChild(nuevoP);
+            }
+
+            function mostrarCoordenadas(event){
+                let x = event.clientX;
+                let y = event.clientY;
+
+            alert("Coordenada X = " + x + " Coordenada Y = " + y );
+        }
+
+        </script>
+
+    </head>
+
+    <body id="body" onmousemove="cambiarColorBody()">
+
+        <div id="titulo" onclick="cambiarColorTitulo()">Prueba de eventos</div>
+
+        <div id="divImg1">
+
+            <img id="img1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAMAAABC4vDmAAAAA1BMVEUNaP8vhKCrAAAALElE
+            QVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgZViQAAd2fpbUAAAAASUVORK5CYII=" onclick="mostrarCoordenadas(event)" onmouseover="mostrarURL(this, 'divImg1')" />
+
+        </div>
+
+        <div id="divImg2">
+
+            <img id="img2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAACUCAMAAACtIJvYAAAAA1B
+            MVEUA7wB+nNL5AAAALElEQVR4nO3BMQEAAADCoPVP7WkJoAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAGVrgAAQdwvSEAAAAASUVORK5CYII=" onclick="mostrarCoordenadas(event)" onmouseover="mostrarURL(this, 'divImg2')"/>
+
+        </div>
+
+    </body>
+
+</html>

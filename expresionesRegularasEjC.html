@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Ejercicio 1</title>
+        <meta charset="UTF-8">
+
+        <script type="text/javascript">
+            let numero = prompt("¿Codigo postal?")
+            var patron = new RegExp("^[0-9]{5}$");
+
+            if(patron.test(numero)==true){
+                document.write("El codigo postal es correcto.")
+            }else{
+                document.write("El codigo postal no es correcto.")
+            }
+        </script>
+    </head>
+
+    <body>
+        
+    </body>
+</html>

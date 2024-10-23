@@ -1,0 +1,133 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Informe de Incidencia</title>
+    <style>
+        #encabezado {
+            background-color: rgb(224, 151, 16);
+            text-align: center;
+            color: white;
+        }
+
+        #imagenes {
+            float: left;
+            margin-left: 20%;
+            margin-top: 5%;
+        }
+
+        #contenido {
+            float: right;
+            margin-right: 20%;
+            margin-top: 5%;
+        }
+
+        .oculto { display: none; }
+
+        .visible { display: inline; }
+
+        .marcoAdvertencia { 
+            border: solid;
+            border-color: red;
+            ;}
+
+        
+
+
+        #descripcion{
+            height: 200px;
+            width: 300px;
+        }
+
+        #advertencia, #advertenciaNumero{
+        text-align: center;
+            color: white;
+            border: 1px solid red;
+            background-color: red;
+        }
+    
+
+    </style>
+</head>
+<body>
+    <h1 id="encabezado">INFORME DE INCIDENCIA</h1>
+
+    <div id="imagenes">
+        <img id="imagen" src="imagenes/distribucion.jpg" width="400" height="300" alt="Imagen de incidencia">
+    </div>
+
+    <div id="contenido">
+        <form>
+            <label for="incidencia">Tipo de incidencia</label>
+            <select name="incidencia" id="incidencia" onchange="cambiarImagen()">
+                <option value="distribucion">Distribución</option>
+                <option value="oficina">Oficina</option>
+                <option value="produccion">Producción</option>
+            </select><br>
+            <div id="divNumeroDeSerie" onclick="this.className='none' , document.getElementById('advertenciaNumero').className='oculto'">
+                <label for="numeroDeSerie" id="etiquetaNumeroDeSerie">Número de serie</label>
+                <input type="text" id="numeroDeSerie"><br>
+            </div>
+            <input id ="botonMostrarTextArea" type="button" value="Mostrar descripción" onclick="mostrarTextArea()"><br>
+            <p id="textoOculto" class="oculto">Descripción</p><br>
+            <textarea id="descripcion" class="oculto"></textarea><br>
+            <input type="checkbox" id="condicionesDeServicio" onclick="document.getElementById('advertencia').className='oculto'">
+            <label for="condicionesDeServicio">He leído y acepto las condiciones de servicio</label><br>
+            <button type="button" onclick="comprobarDatos()">Enviar datos</button><br> 
+            <div id="errores">
+                <p id="advertencia" class="oculto"></p>
+                <p id="advertenciaNumero" class="oculto"></p>
+             </div>
+        </form>
+    </div>
+
+    <script>
+        function cambiarImagen() {
+            const incidencia = document.getElementById("incidencia").value;
+            const imagen = document.getElementById("imagen");
+
+            if (incidencia == "distribucion") {
+                imagen.src = "imagenes/distribucion.jpg";
+            } else if (incidencia == "oficina") {
+                imagen.src = "imagenes/oficina.jpg";
+            } else {
+                imagen.src = "imagenes/produccion.jpg";
+        
+            }
+        }
+
+        function mostrarTextArea(){
+            document.getElementById("textoOculto").className= "visible";
+            document.getElementById("descripcion").className = "visible";
+            document.getElementById("botonMostrarTextArea").className = "oculto";
+        }
+
+        function comprobarDatos(){
+            const advertencia = document.getElementById("advertencia");
+            if (document.getElementById("condicionesDeServicio").checked) {
+                 advertencia.innerHTML = "";
+                 document.getElementById("advertencia").className ="oculto";
+            } else {
+                advertencia.className="visible"
+                advertencia.innerHTML = "Debes aceptar las condiciones";
+            }
+
+            let numero = document.getElementById("numeroDeSerie").value;
+            var patron = new RegExp("[0-9]{3}[A-Z]{4}[12A]");
+
+
+            if(patron.test(numero)==true){
+                advertenciaNumero.innerHTML = "";
+                advertenciaNumero.className="oculto"
+                numero = "";
+            }else{
+                advertenciaNumero.className="visible"
+                advertenciaNumero.innerHTML = "El numero de serie es incorrecto";
+                document.getElementById("divNumeroDeSerie").className="marcoAdvertencia";
+                numero="";
+            }
+        }
+
+    
+    </script>
+</body>
+</html>

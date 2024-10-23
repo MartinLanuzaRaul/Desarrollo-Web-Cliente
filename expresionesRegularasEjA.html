@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Ejercicio 1</title>
+        <meta charset="UTF-8">
+
+        <script type="text/javascript">
+            let numero = prompt("¿Numero de telefono?")
+            var patron = new RegExp("^[0-9]{9}$");
+
+            if(patron.test(numero)==true){
+                document.write("El numero es correcto.")
+            }else{
+                document.write("El numero no es correcto.")
+            }
+        </script>
+    </head>
+
+    <body>
+        
+    </body>
+</html>

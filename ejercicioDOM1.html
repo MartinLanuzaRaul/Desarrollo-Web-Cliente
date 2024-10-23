@@ -1,0 +1,95 @@
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>Ejercicio DOM básico</title>
+
+</head>
+
+ 
+
+<body>
+
+    <p>
+
+        Prueba A
+
+        <a href="http://prueba">enlace A</a>
+
+        Prueba B
+
+        <a href="http://prueba2">enlace B</a>
+
+        Prueba C
+
+    </p>
+
+ 
+
+    <p>
+
+        Prueba D
+
+        <a href="http://prueba">enlace C</a>
+
+        Prueba E
+
+        <a href="http://prueba3">enlace D</a>
+
+        Prueba F
+
+    </p>
+
+ 
+
+    <p>
+
+        Prueba G
+
+        <a href="http://prueba">enlace G</a>
+
+        Prueba H
+
+        <a href="http://prueba4">enlace H</a>
+
+        Prueba I
+
+        <a href="http://prueba5">enlace I</a>
+
+        Prueba J.
+
+    </p>
+
+    <script>
+        var i = 0;
+        var contadorEnlacesIguales = 0;
+
+        const number = document.getElementsByTagName("a");
+        document.write ("El numero de enlaces es " + number.length + "<br>");
+
+        document.write ("La direccion del penultimo enlace es " + number[number.length-2] + "<br>")
+    
+
+        for(i ; i < number.length ; i++){
+            if (number[i].href === "http://prueba/"){
+                contadorEnlacesIguales++;
+            }
+        }
+        document.write ("El numero de enlaces a prueba es " + contadorEnlacesIguales + "<br>");
+
+
+        const numeroParafos = document.getElementsByTagName("p");
+        const numeroEnlacesParrafo3 = numeroParafos[2].getElementsByTagName("a");
+
+        document.write("El numero de enlaces en el parrafo 3 es " + numeroEnlacesParrafo3.length);
+
+
+    </script>
+
+  
+
+</body>
+
+</html>

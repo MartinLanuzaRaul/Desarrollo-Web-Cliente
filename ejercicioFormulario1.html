@@ -1,0 +1,50 @@
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .oculto { display: none; }
+        .visible { display: inline; }   
+    </style>
+
+    <title>Ejercicio 1</title>
+
+<script type="text/javascript">
+    function ocultar(contenido, enlace){
+        if(document.getElementById(contenido).className == "visible" || document.getElementById(contenido).className == ""){
+            document.getElementById(contenido).className = "oculto";
+            document.getElementById(enlace).textContent = "Mostrar contenidos";
+
+        }else{
+            document.getElementById(contenido).className = "visible";
+            document.getElementById(enlace).textContent = "Ocultar contenidos";
+
+        }
+    }
+    
+</script>
+
+</head>
+
+<body>
+
+    <p id="contenidos_1">a</p>
+
+    <a id="enlace_1" href="#" onclick="ocultar('contenidos_1', 'enlace_1')">Ocultar contenidos</a>
+
+    <br />
+
+    <p id="contenidos_2">b</p>
+
+    <a id="enlace_2" href="#" onclick="ocultar('contenidos_2', 'enlace_2')">Ocultar contenidos</a>
+
+    <br />
+
+    <p id="contenidos_3">c</p>
+
+    <a id="enlace_3" href="#" onclick="ocultar('contenidos_3', 'enlace_3')">Ocultar contenidos</a>
+
+</body>
+
+</html>

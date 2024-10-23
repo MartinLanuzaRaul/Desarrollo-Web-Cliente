@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 2</title>
+        <script type="text/javascript">
+
+            function cambiarImagenDown(){
+                document.getElementById("imagen").src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAMAAABC4vDmAAAAA1BMVEUNaP8vhKCrAAAALElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgZViQAAd2fpbUAAAAASUVORK5CYII=";
+            }
+
+            function cambiarImagenUp(){
+                document.getElementById("imagen").src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAACUCAMAAACtIJvYAAAAA1BMVEUA7wB+nNL5AAAALElEQVR4nO3BMQEAAADCoPVP7WkJoAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAGVrgAAQdwvSEAAAAASUVORK5CYII=";
+            }
+        </script>
+    </head>
+    <body>
+        <img id="imagen" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAACUCAMAAACtIJvYAAAAA1BMVEUA7wB+nNL5AAAALElEQVR4nO3
+        BMQEAAADCoPVP7WkJoAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAGVrgAAQdwvSEAAAAASUVORK5CYII=" width="500" height="600" onmousedown=cambiarImagenDown() onmouseup=cambiarImagenUp()>
+       
+    </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<script>
+    var nombre = prompt("Dime el nombre");
+    var apellido = prompt("Dime el apellido");
+    var edad = parseInt(prompt("Dime la edad")); // asegúrate de que la edad sea un número
+    var fecha = new Date();
+    var anyo = fecha.getFullYear();
+    var anyoNac = anyo - edad;
+
+    document.write(nombre + " " + apellido + " nació en " + anyoNac);
+
+</script>
+
+</html>

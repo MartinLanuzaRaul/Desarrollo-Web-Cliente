@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 4</title>
+    </head>
+    <body>
+        <h1>Escribe algo</h1>
+        <textarea id="caja" onkeypress="return contarLetras(100)"></textarea>
+        <p id="mostrarLetras"></p>
+
+        <script>
+           function contarLetras(maxCaracteres) {
+            var maxCaracteres = 100;
+            var caja = document.getElementById("caja");
+            var letrasUsadas = caja.value.length;
+            var letrasRestantes = maxCaracteres - letrasUsadas -1;
+
+            if(caja.value.length >= maxCaracteres ) {
+            return false;
+            }
+            else {
+                document.getElementById("mostrarLetras").innerHTML = letrasRestantes + " caracteres restantes.";
+            return true;
+
+            }
+            
+
+        }
+        
+                   
+        </script>
+    </body>
+</html>
