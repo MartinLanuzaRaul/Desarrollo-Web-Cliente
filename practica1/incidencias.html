@@ -44,6 +44,10 @@
             border: 1px solid red;
             background-color: red;
         }
+
+        textarea {
+            resize: none;
+        }
     
 
     </style>
@@ -56,7 +60,7 @@
     </div>
 
     <div id="contenido">
-        <form>
+        <form action="escorrecto">
             <label for="incidencia">Tipo de incidencia</label>
             <select name="incidencia" id="incidencia" onchange="cambiarImagen()">
                 <option value="distribucion">Distribución</option>
@@ -72,7 +76,7 @@
             <textarea id="descripcion" class="oculto"></textarea><br>
             <input type="checkbox" id="condicionesDeServicio" onclick="document.getElementById('advertencia').className='oculto'">
             <label for="condicionesDeServicio">He leído y acepto las condiciones de servicio</label><br>
-            <button type="button" onclick="comprobarDatos()">Enviar datos</button><br> 
+            <button id="enviar" type="button" onclick="comprobarDatos()">Enviar datos</button><br> 
             <div id="errores">
                 <p id="advertencia" class="oculto"></p>
                 <p id="advertenciaNumero" class="oculto"></p>
@@ -102,6 +106,8 @@
         }
 
         function comprobarDatos(){
+            var numeroValido = true;
+            var checkValido = true;
             const advertencia = document.getElementById("advertencia");
             if (document.getElementById("condicionesDeServicio").checked) {
                  advertencia.innerHTML = "";
@@ -109,10 +115,11 @@
             } else {
                 advertencia.className="visible"
                 advertencia.innerHTML = "Debes aceptar las condiciones";
+                checkValido = false;
             }
 
             let numero = document.getElementById("numeroDeSerie").value;
-            var patron = new RegExp("[0-9]{3}[A-Z]{4}[12A]");
+            var patron = new RegExp("^[0-9]{3}[A-Z]{4}[12A]$");
 
 
             if(patron.test(numero)==true){
@@ -124,6 +131,12 @@
                 advertenciaNumero.innerHTML = "El numero de serie es incorrecto";
                 document.getElementById("divNumeroDeSerie").className="marcoAdvertencia";
                 numero="";
+                numeroValido = false;
+            }
+
+            if (checkValido == true && numeroValido == true){
+                document.getElementById("enviar").setAttribute("type", "submit");
+
             }
         }
 
