@@ -30,7 +30,7 @@ class Carta {
         } else if (this.palo == "d") {
             familia = "diamantes";
         } else if (this.palo == "t") {
-            familia = "tréboles";
+            familia = "treboles";
         } else if (this.palo == "p"){
             familia = "picas";
         }
