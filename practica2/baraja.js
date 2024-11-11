@@ -20,10 +20,20 @@ class Baraja {
         return this.cartas.pop(); 
     }
 
-    barajar(){
-        this.cartas = Math.floor(Math.random() * cartas.length);
-    }
+    barajar() {
+        for (var i = this.cartas.length - 1; i > 0; i--) { 
+       
+            var j = Math.floor(Math.random() * (i +1));
+                       
+            var temp = this.cartas[i];
+            this.cartas[i] = this.cartas[j];
+            this.cartas[j] = temp;
+        }
+           
+        return this.cartas;
+     }
 }
+
 
 let cartasOrdenadas = [];
 
@@ -39,9 +49,18 @@ for (let palo of palos) {
 let miBaraja = new Baraja(cartasOrdenadas);
 document.getElementById("baraja").innerHTML = miBaraja.toString();
 
-document.getElementById("cartaRepartida").innerHTML = miBaraja.reparteCarta();
-
 miBaraja.barajar();
 document.getElementById("baraja2").innerHTML = miBaraja.toString();
+
+document.getElementById("cartaRepartida").innerHTML = miBaraja.reparteCarta();
+document.getElementById("cartaRepartida2").innerHTML = miBaraja.reparteCarta();
+
+document.getElementById("barajaRepartida").innerHTML = miBaraja.toString();
+
+let miJugador = new Jugador();
+miJugador.nuevaCarta(miBaraja); 
+
+document.getElementById("mano").innerHTML = miJugador.toString();
+
 
 
