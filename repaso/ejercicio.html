@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="crearUsuario(event)">
+        <label for="nombre" id="etiquetaNombre">Nombre</label>
+        <input type="text" id="nombre" required><br>
+
+        <label for="correo" id="etiquetaCorreo">Correo</label>
+        <input type="text" id="correo" required><br>
+
+        <label for="contrasenya" id="etiquetaContrasenya">Contraseña</label>
+        <input type="password" id="contrasenya" required><br>
+
+        <input type="submit" value="Registrar">
+    </form>
+    <div id="mensaje"></div>
+
+    <script>
+        class Usuario {
+            constructor(nombre, correo, contrasenya) {
+                this.nombre = nombre;
+                this.correo = correo;
+                this.contrasenya = contrasenya;
+            }
+
+            toString() {
+                return `(${this.nombre}, ${this.correo}, ${this.contrasenya})`;
+            }
+        }
+
+        let usuarios = [];
+
+        // Función para cargar usuarios desde la cookie
+        function cargarUsuariosDesdeCookie() {
+            const cookies = document.cookie.split('; ');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i];
+                if (cookie.startsWith('usuario=')) {
+                    const usuariosJson = cookie.split('=')[1];
+                    usuarios = JSON.parse(usuariosJson);
+                    break; // Salimos del bucle una vez que encontramos la cookie
+                }
+            }
+        }
+
+        function crearUsuario(event) {
+            event.preventDefault(); 
+
+            const nombre = document.getElementById("nombre").value;
+            const correo = document.getElementById("correo").value;
+            const contrasenya = document.getElementById("contrasenya").value;
+
+            // Comprobar si el usuario ya existe usando un bucle for
+            let usuarioExistente = false;
+
+            for (let i = 0; i < usuarios.length; i++) {
+                if (usuarios[i].nombre === nombre) {
+                    usuarioExistente = true;
+                    break; // Salimos del bucle si encontramos el usuario
+                }
+            }
+
+            let mensaje = "";
+            if (usuarioExistente) {
+                mensaje = "Bienvenido de nuevo " + nombre;
+            } else {
+                const miUsuario = new Usuario(nombre, correo, contrasenya);
+                usuarios.push(miUsuario); 
+
+                const hoy = new Date();
+                const caducidadMs = hoy.getTime() + 1000 * 60 * 60 * 24 * 7;
+                const caducidad = new Date(caducidadMs);
+
+                document.cookie = `usuario=${JSON.stringify(usuarios)};expires=${caducidad.toUTCString()}`;
+                mensaje = "Bienvenido " + nombre;
+            }
+
+            // Mostrar el mensaje
+            document.getElementById("mensaje").innerText = mensaje;
+            console.log(document.cookie);
+        }
+
+        //  Borrar cookies
+        //document.cookie = `usuario=${JSON.stringify(usuarios)};expires=${-999}`;
+
+        // Cargar usuarios al inicio
+        cargarUsuariosDesdeCookie();
+        
+
+    </script>
+</body>
+</html>

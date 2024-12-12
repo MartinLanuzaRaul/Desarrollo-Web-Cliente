@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+        font-family: myFirstFont;
+        src: url(imagenes/alarm.ttf);
+                }
+
+        *   {
+        font-family: myFirstFont;
+        }
+                 
+        body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0; 
+        }
+
+        h1 {
+            margin: 0; 
+        }
+        div {
+            display: flex; 
+            gap: 10px; 
+            justify-content: center; 
+            align-items: center; 
+            margin: 0; 
+        }
+    </style>
+</head>
+<body>
+    <h1 id="tiempo">0:0:0</h1>
+
+    <div>
+        <img src="imagenes/start.png" alt="Start" onclick="iniciar()">
+        <img src="imagenes/pause.png" alt="Pause" onclick="pausar()">
+        <img src="imagenes/delete.png" alt="Delete" onclick="eliminar()">
+    </div>
+</body>
+
+<script>
+    let segundos = 0;
+    let minutos = 0;
+    let horas = 0;
+
+
+
+    function iniciar(){
+        identificador = window.setInterval(()=>{
+        segundos++;
+        if(segundos == 60){
+            segundos = 0;
+            minutos++;
+
+            if(minutos == 60){
+                minutos = 0;
+                horas++;
+            }
+        }
+        document.getElementById("tiempo").innerHTML = horas + ":" + minutos + ":" + segundos;
+        console.log(horas + ":" + minutos + ":" + segundos);
+    }, 1000);
+    }
+
+    function pausar(){
+        clearInterval(identificador);
+    }
+
+    function eliminar(){
+        document.getElementById("tiempo").innerHTML = 0 + ":" + 0 + ":" + 0;
+         segundos = 0;
+         minutos = 0;
+         horas = 0;
+         clearInterval(identificador);
+
+    }
+
+
+</script>
+</html>
