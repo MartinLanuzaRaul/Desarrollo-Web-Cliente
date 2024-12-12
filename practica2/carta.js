@@ -36,11 +36,16 @@ class Carta {
         }
 
         if (figura !== "") {
-            return figura + " de " + familia + ".";
+            return  figura + " de " + familia + ".";
         } else {
             return this.valor + " de " + familia + ".";
         }
     }
+
+    getPalo(){
+        return this.palo;
+    }
+
 
     darValor(palo, valor){
         if (palo == 'c' || palo == 'd' || palo == 't' || palo == 'p') {
@@ -52,8 +57,3 @@ class Carta {
     }
 }
 
-let miCarta = new Carta('p', 12);
-document.getElementById("carta").innerHTML = miCarta.toString();
-
-miCarta.darValor('c', 5);
-document.getElementById("cartaModificada").innerHTML = miCarta.toString();

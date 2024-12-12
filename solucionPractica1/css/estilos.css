@@ -1,0 +1,50 @@
+h1{
+	text-align: center;
+	color: white;
+	font-family: sans-serif;
+	background-color: rgba(206, 134, 66, 1);;
+}
+
+figure{
+	float: left;
+	width: 300px;
+}
+
+figure img{
+	width: 100%;
+}
+
+main{
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+#campoDescripcion{
+	display: none;
+}
+
+#capaError{
+	border-radius: 5px;
+	background-color: red;
+	margin-top: 0.5em;
+}
+
+#capaError p{
+
+	color: white;
+	margin: 0em;
+	padding-left: 0.4em;
+	padding-right: 0.6em;
+	padding-bottom: 0.3em;
+	padding-top: 0em;
+}
+
+#capaError p::before {
+	content: "\26A0";
+	margin-right: 0.3em;
+}
+
+.error {
+	border: 1px solid red;
+}

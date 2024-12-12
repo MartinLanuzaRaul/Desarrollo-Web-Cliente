@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="crearPersona(event)">
+        <label for="nombre" id="etiquetaNombre">Nombre</label>
+        <input type="text" id="nombre" required><br>
+
+        <label for="edad" id="etiquetaEdad">Edad</label>
+        <input type="number" id="edad" required><br>
+
+        <label for="sexo" id="etiquetaSexo">Sexo</label>
+        <select name="sexo" id="sexo" required>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+        </select><br>
+
+        <label for="curso" id="etiquetaCurso">Curso</label>
+        <input type="text" id="curso"><br>
+
+        <label for="nota" id="etiquetaNota">Nota</label>
+        <input type="number" id="nota" step="0.1"><br>
+
+        <input type="submit" value="Crear Persona/Estudiante">
+    </form>
+
+    <p id="vacio"></p>
+    <p id="comparacion"></p>
+
+    <script>
+        class Persona {
+            constructor(nombre, edad, sexo) {
+                this.nombre = nombre;
+                this.edad = edad;
+                this.sexo = sexo;
+            }
+
+            toString() {
+                return "(" + this.nombre + ", " + this.edad + ", " + this.sexo + ")";
+            }
+        }
+
+        class Estudiante extends Persona {
+            constructor(nombre, edad, sexo, curso, nota) {
+                super(nombre, edad, sexo); // Llamar al constructor de Persona
+                this.curso = curso;
+                this.nota = nota;
+            }
+
+            toString() {
+                return "(" + this.nombre + ", " + this.edad + ", " + this.sexo + " - " + this.curso + ", " + this.nota + ")";
+            }
+        }
+
+        // Array para almacenar las personas y estudiantes
+        let personas = [];
+
+        function crearPersona(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            var nombre = document.getElementById("nombre").value;
+            var edad = parseInt(document.getElementById("edad").value); // Convertir a número
+            var sexo = document.getElementById("sexo").value;
+            var curso = document.getElementById("curso").value;
+            var nota = document.getElementById("nota").value ? parseFloat(document.getElementById("nota").value) : null; // Convertir a número o null
+
+            let nuevaPersona;
+
+            // Crear una instancia de Persona o Estudiante
+            if (curso && nota !== null) {
+                nuevaPersona = new Estudiante(nombre, edad, sexo, curso, nota);
+            } else {
+                nuevaPersona = new Persona(nombre, edad, sexo);
+            }
+
+            personas.push(nuevaPersona); // Agregar la nueva persona o estudiante al array
+
+            // Mostrar todas las personas
+            document.getElementById("vacio").innerHTML = personas.map(p => p.toString()).join(", ");
+
+            // Comparar notas si hay estudiantes
+            compararNotas();
+        }
+
+        function compararNotas() {
+            // Filtrar solo los estudiantes
+            let estudiantes = personas.filter(p => p instanceof Estudiante);
+
+            if (estudiantes.length < 2) {
+                document.getElementById("comparacion").innerHTML = "Se necesitan al menos dos estudiantes para comparar.";
+                return;
+            }
+
+            let mejorEstudiante = estudiantes[0];
+            let peorEstudiante = estudiantes[0];
+
+            for (let i = 1; i < estudiantes.length; i++) {
+                if (estudiantes[i].nota > mejorEstudiante.nota) {
+                    mejorEstudiante = estudiantes[i];
+                }
+                if (estudiantes[i].nota < peorEstudiante.nota) {
+                    peorEstudiante = estudiantes[i];
+                }
+            }
+
+            document.getElementById("comparacion").innerHTML = 
+                "El mejor estudiante es: " + mejorEstudiante.toString() + 
+                " y el peor estudiante es: " + peorEstudiante.toString();
+        }
+    </script>
+</body>
+</html>

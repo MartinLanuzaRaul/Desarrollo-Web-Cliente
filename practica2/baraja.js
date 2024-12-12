@@ -34,33 +34,3 @@ class Baraja {
      }
 }
 
-
-let cartasOrdenadas = [];
-
-const palos = ['p', 'd', 'c', 't']; 
-
-for (let palo of palos) {
-   for (let valor = 1; valor <= 12; valor++) {
-        let carta = new Carta(palo, valor);
-        cartasOrdenadas.push(carta); 
-   }
-}
-
-let miBaraja = new Baraja(cartasOrdenadas);
-document.getElementById("baraja").innerHTML = miBaraja.toString();
-
-miBaraja.barajar();
-document.getElementById("baraja2").innerHTML = miBaraja.toString();
-
-document.getElementById("cartaRepartida").innerHTML = miBaraja.reparteCarta();
-document.getElementById("cartaRepartida2").innerHTML = miBaraja.reparteCarta();
-
-document.getElementById("barajaRepartida").innerHTML = miBaraja.toString();
-
-let miJugador = new Jugador();
-miJugador.nuevaCarta(miBaraja); 
-
-document.getElementById("mano").innerHTML = miJugador.toString();
-
-
-

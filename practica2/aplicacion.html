@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Poker</title>
+    <style>
+       body {
+    background-color: #2E8B57; 
+    font-family: 'Arial', sans-serif;
+    color: white; 
+    text-align: center; 
+}
+
+.allgallery {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px; 
+}
+
+.gallery {
+    background-color: #3D8B57;
+    border: 2px solid #FFFFFF;
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    margin: 10px; 
+    padding: 10px;
+    transition: transform 0.2s; 
+}
+
+.gallery:hover {
+    transform: scale(1.10); 
+}
+
+.desc {
+    text-align: center;
+    margin-top: 10px;
+}
+        </style>
+</head>
+<body>
+   
+
+    <p id="mano"></p>
+
+    <p>Jugada: </p>
+    <p id="jugada"></p>
+
+
+    <script src="carta.js"></script>
+    <script src="baraja.js"></script>
+    <script src="jugador.js"></script>
+    <script src="aplicacion.js"></script>
+
+    <div class="allgallery">
+		
+		<div class="gallery">
+				<img id="carta4" src="cartas\dorso-rojo.svg"  width="300" height="200">
+		<div id="divCarta4" class="desc">Carta 5</div></div>
+		
+		<div class="gallery">
+				<img id="carta3" src="cartas\dorso-rojo.svg" width="300" height="200">
+		<div id="divCarta3" class="desc">Carta 4</div></div>
+
+		<div class="gallery">
+				<img id="carta2" src="cartas\dorso-rojo.svg" width="300" height="200">
+		<div id="divCarta2" class="desc">Carta 3</div></div>
+		
+		<div class="gallery">
+				<img id="carta1" src="cartas\dorso-rojo.svg" width="300" height="200">
+		<div id="divCarta1" class="desc">Carta 2</div></div>
+
+        <div class="gallery">
+            <img id="carta0" src="cartas\dorso-rojo.svg" width="300" height="200">
+    <div id="divCarta0" class="desc">Carta 1</div></div>
+		</div>
+
+        
+
+    
+</body>
+</html>

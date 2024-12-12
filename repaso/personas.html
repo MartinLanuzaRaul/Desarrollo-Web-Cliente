@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="crearPersona(event)">
+        <label for="nombre" id="etiquetaNombre">Nombre</label>
+        <input type="text" id="nombre" required><br>
+
+        <label for="edad" id="etiquetaEdad">Edad</label>
+        <input type="number" id="edad" required><br>
+
+        <label for="sexo" id="etiquetaSexo">Sexo</label>
+        <select name="sexo" id="sexo" required>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+        </select><br>
+
+        <input type="submit" value="Crear Persona">
+    </form>
+
+    <p id="vacio"></p>
+    <p id="comparacion"></p>
+
+    <script>
+        class Persona {
+            constructor(nombre, edad, sexo) {
+                this.nombre = nombre;
+                this.edad = edad;
+                this.sexo = sexo;
+            }
+
+            toString() {
+                return "(" + this.nombre + ", " + this.edad + ", " + this.sexo + ")";
+            }
+        }
+
+        // Array para almacenar las personas
+        let personas = [];
+
+        function crearPersona(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            var nombre = document.getElementById("nombre").value;
+            var edad = parseInt(document.getElementById("edad").value); // Convertir a número
+            var sexo = document.getElementById("sexo").value;
+
+            let miPersona = new Persona(nombre, edad, sexo);
+            personas.push(miPersona); // Agregar la nueva persona al array
+
+            // Mostrar todas las personas
+            document.getElementById("vacio").innerHTML = personas.map(p => p.toString()).join(", ");
+
+            // Comparar edades
+            compararEdades();
+        }
+
+        function compararEdades() {
+            if (personas.length < 2) {
+                document.getElementById("comparacion").innerHTML = "Se necesitan al menos dos personas para comparar.";
+                return;
+            }
+
+            let mayor = personas[0];
+            let menor = personas[0];
+
+            for (let i = 1; i < personas.length; i++) {
+                if (personas[i].edad > mayor.edad) {
+                    mayor = personas[i];
+                }
+                if (personas[i].edad < menor.edad) {
+                    menor = personas[i];
+                }
+            }
+
+            document.getElementById("comparacion").innerHTML = 
+                "La persona mayor es: " + mayor.toString() + 
+                " y la persona menor es: " + menor.toString();
+        }
+    </script>
+</body>
+</html>
